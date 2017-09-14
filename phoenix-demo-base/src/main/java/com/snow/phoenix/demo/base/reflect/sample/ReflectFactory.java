@@ -28,7 +28,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * 实例化工厂，主要用于实例化
+ * 实例化工厂，主要用于实例化，考虑到可重用，可以加个工厂类或管理类
  */
 public class ReflectFactory {
 
