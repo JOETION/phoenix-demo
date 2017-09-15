@@ -31,7 +31,7 @@ import java.lang.reflect.Modifier;
 
 
 /**
- * 注解调用工厂
+ * 注解处理工厂
  */
 public class AnnotationFactory {
 

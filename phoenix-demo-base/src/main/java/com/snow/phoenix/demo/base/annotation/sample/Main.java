@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
  */
 public class Main {
 
-    @AnnotationDemo
+    @AnnotationDemo(version = "1.0.0")
     private int sum(Integer a, Integer b) {
         return a + b;
     }

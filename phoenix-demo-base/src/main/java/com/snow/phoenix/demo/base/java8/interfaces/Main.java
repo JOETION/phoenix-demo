@@ -14,36 +14,30 @@
  *   limitations under the License.
  */
 
-package com.snow.phoenix.demo.base.annotation.sample;
+package com.snow.phoenix.demo.base.java8.interfaces;
 
 /* 				    
  **********************************************
  *      DATE           PERSON       REASON
- *    2017/8/18          FXY        Created
+ *    2017/9/15          FXY        Created
  **********************************************
  */
 
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 /**
- * 方法求和注解类
+ * 程序入口
  * <p>
- * 注解类中方法名就是属性，不能有参数
+ * 请将java编译器版本调为1.8，jdk8默认的编译器版本是1.5
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface AnnotationDemo {
+public class Main {
 
-    //此方法使用时不需要指定变量名
-//    String value();
+    public static void main(String args[]) {
+        InterfaceDemo interfaceDemo = new InterfaceDemoImpl();
+        System.out.println("开始测试java8新特性，接口中可以有静态方法和默认方法........");
+        interfaceDemo.ordinary();
+        InterfaceDemo.fixed();
+        interfaceDemo.tolerant();
+        System.out.println("测试完成........");
+    }
 
-    //默认的方法名，使用注解时也可以不用指定变量名
-//    String version() default "1.0";
-
-    //方法名既不是value()又没有默认值时，使用注解必须加上变量名
-    String version();
 }

@@ -14,36 +14,43 @@
  *   limitations under the License.
  */
 
-package com.snow.phoenix.demo.base.annotation.sample;
+package com.snow.phoenix.demo.base.enums.sample;
 
 /* 				    
  **********************************************
  *      DATE           PERSON       REASON
- *    2017/8/18          FXY        Created
+ *    2017/9/15          FXY        Created
  **********************************************
  */
 
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 /**
- * 方法求和注解类
- * <p>
- * 注解类中方法名就是属性，不能有参数
+ * 苹果实体
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface AnnotationDemo {
+public class ApplePojo {
 
-    //此方法使用时不需要指定变量名
-//    String value();
 
-    //默认的方法名，使用注解时也可以不用指定变量名
-//    String version() default "1.0";
+    private Color2Demo color2Demo;
 
-    //方法名既不是value()又没有默认值时，使用注解必须加上变量名
-    String version();
+    private String shape;
+
+    public ApplePojo(Color2Demo color2Demo, String shape) {
+        this.color2Demo = color2Demo;
+        this.shape = shape;
+    }
+
+    public Color2Demo getColor2Demo() {
+        return color2Demo;
+    }
+
+    public void setColor2Demo(Color2Demo color2Demo) {
+        this.color2Demo = color2Demo;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
 }
