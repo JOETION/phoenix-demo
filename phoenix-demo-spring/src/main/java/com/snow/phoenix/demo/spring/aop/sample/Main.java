@@ -35,7 +35,7 @@ public class Main {
             verifyMethodInvoke.sum(5, 5);
             verifyMethodInvoke.sum(5, 0);
         } catch (Throwable throwable) {
-//            System.out.println(throwable.getMessage());
+            System.out.println(throwable.getMessage());
         }
         System.out.println("验证完成");
     }

@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
  * 主要用于打印调用日志
  */
 @Aspect
-@Component("111")
+@Component
 public class MethodInvokeAspectjDemo {
 
 
