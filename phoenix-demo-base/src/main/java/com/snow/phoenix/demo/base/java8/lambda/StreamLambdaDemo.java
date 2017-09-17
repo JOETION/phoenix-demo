@@ -25,6 +25,7 @@ package com.snow.phoenix.demo.base.java8.lambda;
 
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -181,6 +182,15 @@ public class StreamLambdaDemo {
             });
             System.out.println("遍历输出链表数据完成...");
 
+
+            Map<String, Integer> map = new ConcurrentHashMap<>();
+            map.put("fang", 100);
+            map.put("xiao", 200);
+            map.put("yong", 300);
+            map.forEach((key, value) -> {
+                System.out.println("key： " + key + " value： " + value);
+            });
+
         }
 
         //按顺序遍历案例，属于串行遍历，效率不如foreach快，foreach是并行遍历，但是不能保证遍历顺序
@@ -189,6 +199,15 @@ public class StreamLambdaDemo {
             System.out.println("开始遍历输出链表数据...");
             list.stream().forEachOrdered(a -> System.out.println(a));
             System.out.println("遍历输出链表数据完成...");
+
+            Map<String, Integer> map = new HashMap<>();
+            map.put("fang", 100);
+            map.put("xiao", 200);
+            map.put("yong", 300);
+            map.forEach((key, value) -> {
+                System.out.println("key： " + key + " value： " + value);
+            });
+
 
         }
 
