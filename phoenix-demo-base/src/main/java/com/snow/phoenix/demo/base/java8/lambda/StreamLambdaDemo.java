@@ -55,6 +55,7 @@ public class StreamLambdaDemo {
 
             //将String数组转换为Integer链表
             String[] strings = new String[]{"1", "2", "3", "4", "5"};
+            //String[] copyOfStrings = Arrays.copyOf(strings, strings.length + 1);  复制数组数据到新的数组中
             List<Integer> integers = Stream.of(strings).map(string -> Integer.parseInt(string)).collect(Collectors.toList());
             for (Integer integer : integers) {
                 System.out.println(integer);
