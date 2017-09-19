@@ -40,6 +40,12 @@ import java.util.stream.Stream;
  * forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 iterator
  * 短路流（或属于中间流或属于终端流，主要用于缩小查找范围）：
  * anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 limit
+ * <p>
+ * lambda调用方法：
+ * 容器::方法名
+ * 类名::静态方法名
+ * 类名::实例方法名
+ * 构造函数::new
  */
 public class StreamLambdaDemo {
 

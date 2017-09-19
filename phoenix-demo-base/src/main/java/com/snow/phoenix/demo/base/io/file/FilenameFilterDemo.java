@@ -61,7 +61,8 @@ public class FilenameFilterDemo implements FilenameFilter {
     }
 
     public static void main(String args[]) {
-        final String dir="E://学习资料//文档";
+        //File.separatorChar会根据文件系统自动填充合适的分割符
+        final String dir = "E:" + File.separatorChar + "学习资料" + File.separatorChar + "文档";
         File file = new File(dir);
         String[] list = file.list(new FilenameFilterDemo());
         for (String filename : list)

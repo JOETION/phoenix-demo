@@ -26,7 +26,7 @@ package com.snow.phoenix.demo.base.locale;
 
 import java.util.Locale;
 
-public class Main {
+public class LocaleDemo {
     public static void main(String[] args) {
         // 设置默认语言环境
         Locale.setDefault(Locale.CHINA);
