@@ -25,9 +25,13 @@ package com.snow.phoenix.demo.base.locale;
 
 
 import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 public class LocaleDemo {
-    public static void main(String[] args) {
+
+    //locale案例
+    public void localeDemo() {
         // 设置默认语言环境
         Locale.setDefault(Locale.CHINA);
         // 获取计算机默认语言环境
@@ -57,5 +61,39 @@ public class LocaleDemo {
         String[] str1 = Locale.getISOCountries();
         // 返回 ISO 639 中所定义的所有两字母语言代码
         String[] str2 = Locale.getISOLanguages();
+    }
+
+
+    //ResourceBundle案例
+    public void resourceBundleDemo() {
+        // 读取默认资源文件，跟Local默认值有关
+        ResourceBundle resb1 = ResourceBundle.getBundle("localedemo",
+                Locale.getDefault());  //会自动找到本地对应（这里是中国的）的语言文件
+        System.out.println(resb1.getString("title"));
+        System.out.println(resb1.getString("name"));
+        System.out.println("-----------------------------");
+
+        Locale localeEn = new Locale("en", "US");
+        // 英语资源文件myres_en_US.properties
+        ResourceBundle resb2 = ResourceBundle.getBundle("localedemo", localeEn);
+        System.out.println(resb2.getString("title"));
+        System.out.println(resb2.getString("name"));
+        System.out.println("-----------------------------");
+
+        // 中文资源文件myres_zh_CN.properties，中文需要用ascii编码
+        Locale localeZh = new Locale("zh", "CN");
+        ResourceBundle resb3 = ResourceBundle.getBundle("localedemo", localeZh);
+        System.out.println(resb3.getString("title"));
+        System.out.println(resb3.getString("name"));
+        System.out.println("-----------------------------");
+    }
+
+
+    public static void main(String[] args) {
+
+        LocaleDemo localeDemo = new LocaleDemo();
+//        localeDemo.localeDemo();
+        localeDemo.resourceBundleDemo();
+
     }
 }
