@@ -55,6 +55,12 @@ public class JoinDemo {
         }
 
         System.out.println("Main thread is finished");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                System.err.println("所有线程已正常关闭，JVM即将退出");
+            }
+        }));
     }
 
 

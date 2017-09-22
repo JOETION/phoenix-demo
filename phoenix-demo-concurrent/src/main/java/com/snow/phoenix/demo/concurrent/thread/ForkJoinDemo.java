@@ -60,6 +60,12 @@ public class ForkJoinDemo {
             e.printStackTrace();
         }
 
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                System.err.println("所有线程已正常关闭，JVM即将退出");
+            }
+        }));
+
     }
 
     //计数任务

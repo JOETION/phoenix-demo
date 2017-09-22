@@ -51,6 +51,12 @@ public class LockSupportDemo {
         LockSupport.park(mainThread);
 
         System.out.println(Thread.currentThread().getName() + " continue");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                System.err.println("所有线程已正常关闭，JVM即将退出");
+            }
+        }));
     }
 
     static class ThreadA extends Thread {
