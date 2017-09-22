@@ -14,36 +14,28 @@
  *   limitations under the License.
  */
 
-package com.snow.phoenix.demo.base.annotation.sample;
+package com.snow.phoenix.demo.base.sundry.abstracts.sample;
 
 /* 				    
  **********************************************
  *      DATE           PERSON       REASON
- *    2017/8/18          FXY        Created
+ *    2017/9/22          FXY        Created
  **********************************************
  */
 
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 /**
- * 方法求和注解类
- * <p>
- * 注解类中方法名就是属性，不能有参数
+ * 人类
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface AnnotationDemo {
+public abstract class Human {
 
-    //此方法使用时不需要指定变量名
-//    String value();
+    //人类可以造小人儿
+    public Object makePeople() {
+        return doWork();
+    }
 
-    //默认的方法名，使用注解时可以不用指定变量
-//    String version() default "1.0";
+    //造小人儿需要的手续
+    protected abstract Object doWork();
 
-    //方法名既不是value()又没有默认值时，使用注解必须加上变量名
-    String version();
+
 }

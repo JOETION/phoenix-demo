@@ -32,11 +32,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 等待唤醒案列
- * <p/>
+ * <p>
  * wait()和notifyAll()是针对于线程而言，等待和唤醒的都是线程，而不是指某一个具体的对象或某一个线程变量，
- * <p/>
- * wait()和notifyAll()必须获得相同的锁，wait()时释放锁，请求操作系统挂起自己，notify()时获得锁，并又操作系统唤醒自己
- * <p/>
+ * <p>
+ * wait()和notifyAll()必须获得相同的锁，wait()时释放锁，请求操作系统挂起自己，notifyAll()时先获得锁，唤醒正在该锁上Wait的线程
+ * 等到notifyAll()对应的锁块中逻辑执行完后，释放锁，接着Wait处等到的线程又获得锁，继续执行后面的代码
+ * <p>
  * notify()时，操作系统随机唤醒一个在该锁上等待的线程，并不一定会唤醒某个指定的线程，一般都.是使用的notifyAll()
  */
 @ThreadSafe
