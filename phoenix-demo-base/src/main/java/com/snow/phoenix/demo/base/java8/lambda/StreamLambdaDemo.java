@@ -56,7 +56,8 @@ public class StreamLambdaDemo {
     public static class IntermediateStreamLambdaDemo {
 
         //转换案例
-        //map的用法还不太清楚，有待深入学习
+        //将链表或数组中的每个元素进行某个批量操作，所有元素合在一起返回数组或链表
+        //主要用来根据链表或数组中的数据来封装pojo
         public void mapOfStream() {
 
             //将String数组转换为Integer链表
@@ -81,12 +82,37 @@ public class StreamLambdaDemo {
 
         }
 
-        //过滤案例
+        /**
+         * 扁平化转换案例
+         * 进行某种函数转换，将二维数组转换为一维数组
+         */
+        public void flatMapOfStream() {
+
+            //将二维数组转换为一维数组
+            String[][] strings = new String[][]{{"fang"}, {"xiao"}, {"yong"}, {"is"}, {"best"}};
+            //先获取二维数组中子项的流，即一维数组，再获取一维数组中子项的流，即每个元素
+            List<String> stringList = Arrays.stream(strings)
+                    .flatMap(a -> Arrays.stream(a)).collect(Collectors.toList()); //将二维数组转换为一维数组
+
+            stringList.stream().forEachOrdered(a -> {
+                System.out.println(a);
+            });
+
+            //将一维数组转换为二维数组，遍历方法省略
+            List<String> list = Arrays.asList("fang", "xiao", "yong");
+            List<String[][]> collect = list.stream().map(a -> new String[][]{{a}}).collect(Collectors.toList());
+
+        }
+
+        /**
+         * 过滤案例
+         * 要求匿名函数返回值为boolean
+         */
         public void filterOfStream() {
 
             //取出数组中的偶数
             Integer[] integers = new Integer[]{1, 2, 3, 4, 5};
-            Integer[] array = Stream.of(integers).filter(a -> a % 2 == 0).toArray(Integer[]::new);
+            Integer[] array = Stream.of(integers).filter(a -> a % 2 == 0).toArray(Integer[]::new); //filter中的匿名函数返回值为boolean
             for (Integer integer : array) {
                 System.out.println(integer);
             }
@@ -94,7 +120,9 @@ public class StreamLambdaDemo {
             System.out.println("=======================================");
 
             List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5);
-            List<Integer> collect = integerList.stream().filter(a -> a % 2 == 0).filter(a -> a > 0).collect(Collectors.toList());
+            //filter方法会去调用Predicate中的test方法
+            //filter((a) -> a % 2 == 0)和filter(a -> a > 0) 箭头前面是参数，后面的是返回值，只有一个参数时可以省略参数的括号
+            List<Integer> collect = integerList.stream().filter((a) -> a % 2 == 0).filter(a -> a > 0).collect(Collectors.toList());
             for (Integer integer : collect) {
                 System.out.println(integer);
             }
@@ -361,6 +389,7 @@ public class StreamLambdaDemo {
 
     public static void main(String args[]) {
 //        new StreamLambdaDemo.IntermediateStreamLambdaDemo().mapOfStream();
+//        new StreamLambdaDemo.IntermediateStreamLambdaDemo().flatMapOfStream();
 //        new StreamLambdaDemo.IntermediateStreamLambdaDemo().filterOfStream();
 //        new StreamLambdaDemo.IntermediateStreamLambdaDemo().distinctOfStream();
 //        new StreamLambdaDemo.IntermediateStreamLambdaDemo().sortedOfStream();
