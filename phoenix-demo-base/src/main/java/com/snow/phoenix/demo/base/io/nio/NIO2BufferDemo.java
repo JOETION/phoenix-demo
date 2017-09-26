@@ -26,14 +26,19 @@ package com.snow.phoenix.demo.base.io.nio;
 import java.nio.CharBuffer;
 
 /**
- * nio下的Buffer
+ * nio下的Buffer案例
+ * <p>
+ * Buffer是个抽象类,其中包含了mark，position，limit，capacity
+ * <p>
+ * 包含了flip，position，limit等方法
+ * 参考网址：<a>http://m.blog.csdn.net/u012152619/article/details/46041771#</a>
  */
 public class NIO2BufferDemo {
 
     public static void main(String[] args) {
         // 创建Buffer
         CharBuffer buff = CharBuffer.allocate(8);    // ①
-        System.out.println("capacity: "	+ buff.capacity());
+        System.out.println("capacity: " + buff.capacity());
         System.out.println("limit: " + buff.limit());
         System.out.println("position: " + buff.position());
         // 放入元素
@@ -43,7 +48,7 @@ public class NIO2BufferDemo {
         System.out.println("加入三个元素后，position = "
                 + buff.position());
         // 调用flip()方法
-        buff.flip();	  // ③
+        buff.flip();      // ③
         System.out.println("执行flip()后，limit = " + buff.limit());
         System.out.println("position = " + buff.position());
         // 取出第一个元素
@@ -56,7 +61,7 @@ public class NIO2BufferDemo {
         System.out.println("执行clear()后，position = "
                 + buff.position());
         System.out.println("执行clear()后，缓冲区内容并没有被清除："
-                + "第三个元素为：" +  buff.get(2));    // ⑥
+                + "第三个元素为：" + buff.get(2));    // ⑥
         System.out.println("执行绝对读取后，position = "
                 + buff.position());
 
