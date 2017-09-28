@@ -24,10 +24,8 @@ package com.snow.phoenix.demo.base.io.nio;
  */
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -39,25 +37,27 @@ import java.nio.charset.CharsetDecoder;
  */
 public class NIO2ChannelDemo {
 
-    private final static String FILE_PATH = "E://linux.txt";
+    private final static String FILE_IN_PATH = "E://linux.txt";
+
+    private final static String FILE_OUT_PATH = "E://linux1.txt";
 
     public static void main(String[] args) {
-        File f = new File(FILE_PATH);
+        File f = new File(FILE_IN_PATH);
         try {
             // 创建FileInputStream，以该文件输入流创建FileChannel
             FileChannel inChannel = new FileInputStream(f).getChannel();
             // 以文件输出流创建FileBuffer，用以控制输出
-            FileChannel outChannel = new FileOutputStream("D:\\channel.txt")
+            FileChannel outChannel = new FileOutputStream(FILE_OUT_PATH)
                     .getChannel();
             // 将FileChannel里的全部数据映射成ByteBuffer
             MappedByteBuffer buffer = inChannel.map(
                     FileChannel.MapMode.READ_ONLY, 0, f.length()); // ①
-            // 使用GBK的字符集来创建解码器
-            Charset charset = Charset.forName("GBK");
             // 直接将buffer里的数据全部输出
             outChannel.write(buffer); // ②
             // 再次调用buffer的clear()方法，复原limit、position的位置
-            buffer.clear();
+            buffer.clear(); //此处作用相当于flip();
+            // 使用GBK的字符集来创建解码器
+            Charset charset = Charset.forName("GBK");
             // 创建解码器(CharsetDecoder)对象
             CharsetDecoder decoder = charset.newDecoder();
             // 使用解码器将ByteBuffer转换成CharBuffer
@@ -67,7 +67,6 @@ public class NIO2ChannelDemo {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
 }
