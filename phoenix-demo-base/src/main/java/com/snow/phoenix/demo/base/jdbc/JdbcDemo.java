@@ -52,8 +52,8 @@ public class JdbcDemo {
      */
     public static void main(String args[]) {
         JdbcDemo jdbcDemo = new JdbcDemo();
-//        jdbcDemo.verifyQuery();
-        jdbcDemo.verifyUpdate();
+        jdbcDemo.verifyQuery();
+//        jdbcDemo.verifyUpdate();
 
     }
 
@@ -62,7 +62,7 @@ public class JdbcDemo {
      */
     public void verifyQuery() {
         final String sql = "select * from rate where number=?";
-        final Object[] params = new Object[]{"111"};
+        final Object[] params = new Object[]{"FXY"};
         //执行查询
         ResultSet resultSet = this.executeQuery(sql, params);
         assert resultSet != null; //虚拟机添加 -ea 参数
@@ -74,9 +74,18 @@ public class JdbcDemo {
                 System.out.println("class: " + resultSet.getString("class"));
                 System.out.println("used: " + resultSet.getString("used"));
                 System.out.println("firstname: " + resultSet.getString("firstname"));
+                //下面这三句必须连用
+                resultSet.updateString("class", "****"); //修改某字段
+                resultSet.updateRow(); // 更新某行
+                connection.commit(); //提交事务，如果未打开事务，updateRow()会自动提交事务
             }
         } catch (SQLException e) {
             System.err.println("遍历查询结果发生了异常:" + e);
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                System.out.println("回滚结果集失败，原因：" + e1);
+            }
         }
         //关闭数据库连接
         this.close();
@@ -131,7 +140,7 @@ public class JdbcDemo {
     private PreparedStatement getMysqlStatement(String sql, Object[] params) {
         try {
             // 创建一个JDBC声明
-            statement = getMysqlConnection().prepareStatement(sql);
+            statement = getMysqlConnection().prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE); //结果集不可滚动，结果集对更新敏感
             if (null != params && params.length != 0) {
                 for (int i = 0; i < params.length; i++) {
                     statement.setObject(i + 1, params[i]);
