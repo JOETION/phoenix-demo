@@ -68,5 +68,6 @@
         <module>phoenix-demo-spring</module>
         <module>phoenix-demo-concurrent-base</module>
         <module>phoenix-demo-base</module>
+        <module>phoenix-demo-safe</module>
     </modules>
 </project>
