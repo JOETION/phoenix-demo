@@ -69,5 +69,6 @@
         <module>phoenix-demo-concurrent-base</module>
         <module>phoenix-demo-base</module>
         <module>phoenix-demo-safe</module>
+        <module>phoenix-demo-jsp</module>
     </modules>
 </project>

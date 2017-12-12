@@ -12,4 +12,6 @@ phoenix-demo-spring:主要存放spring的相关知识
 
 phoenix-demo-safe:存放有关安全机制方面的知识
 
+phoenix-demo-jsp:存放jsp和servlet的相关知识
+
 备注:不定期更新
