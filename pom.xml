@@ -70,5 +70,7 @@
         <module>phoenix-demo-base</module>
         <module>phoenix-demo-safe</module>
         <module>phoenix-demo-jsp</module>
+        <module>phoenix-demo-springboot</module>
+        <module>phoenix-demo-struts2</module>
     </modules>
 </project>

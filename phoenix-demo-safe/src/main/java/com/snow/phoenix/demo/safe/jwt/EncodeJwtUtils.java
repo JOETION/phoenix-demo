@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-package com.snow.phoenix.demo.safe.token;
+package com.snow.phoenix.demo.safe.jwt;
 
 /* 				    
  **********************************************
