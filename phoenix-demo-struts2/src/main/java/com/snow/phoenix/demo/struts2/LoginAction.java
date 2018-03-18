@@ -28,6 +28,8 @@ import com.opensymphony.xwork2.ActionSupport;
  * 控制器类 <br/>
  * 参考网址：<br/>
  * <a href="http://blog.csdn.net/shuiguolan/article/details/51728127"></a>
+ * 创建Action的两种方式：<br/>
+ * 1：普通的javabean（但是必须有execute方法，没有其他业务方法时，默认调用execute方法）2：继承ActionSupport
  */
 public class LoginAction extends ActionSupport {
 

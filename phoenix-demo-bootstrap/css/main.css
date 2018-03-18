@@ -1,0 +1,666 @@
+/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    -webkit-clip-path: none;
+    clip-path: none;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: inherit;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        /* Black prints faster:
+                                          http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+/*全局样式开始================================================================*/
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333333;;
+    background-color: #fff;
+    position: relative;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/*全局样式结束===================================================================*/
+
+/*上右下左*/
+.logo {
+    float: left;
+    margin: 10px 10px 10px 0px;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 90px;
+}
+
+.site-name a {
+    font-size: 36px;
+    color: #fff;
+}
+
+.site-slogan {
+    font-size: 12px;
+    color: #fff;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border: none;
+    margin-top: 20px;
+}
+
+.navbar-default .navbar-nav li a {
+    font-size: 18px;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover {
+    background-color: transparent;
+    color: #55ACEE;
+}
+
+.navbar-default .navbar-nav li a:hover {
+    color: #55ACEE;
+}
+
+.navbar-default .navbar-nav li a {
+    color: #fff;
+}
+
+.fixed-header-on header {
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 5px 0;
+}
+
+.fixed-header-on .logo {
+    transform: scale(0.8);
+    margin: 0px 10px 10px 0px;
+}
+
+.fixed-header-on .site-name a {
+    font-size: 24px;
+    transition: all 0.3s ease-in-out;
+}
+
+.fixed-header-on .navbar-default {
+    margin-top: 8px;
+}
+
+/*首页*/
+.index {
+    height: 100%;
+}
+
+.index h1 {
+    color: #55ACEE;
+    font-weight: 700;
+}
+
+.index h3 {
+    color: #fff;
+    font-weight: 700;
+}
+
+.index p {
+    color: #fff;
+    font-weight: 700;
+}
+
+.index .container {
+    z-index: 1;
+    position: relative;
+    top: 35%;
+    width: 100%;
+}
+
+.index::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    content: '';
+}
+
+/*
+关于*/
+.space {
+    padding: 20px 0;
+}
+
+.about .list-unstyled li i {
+    color: #55ACEE;
+}
+
+.panel-default a {
+    width: 100%; /*行内块显示，宽度需要100%*/
+    text-decoration: none;
+    display: inline-block;
+    background-color: #55ACEE;
+    color: #fff;
+    padding: 10px 10px;
+
+}
+
+.about .panel-heading {
+    padding: 0px; /*注意看盒子模型，来判断到底是哪里的问题*/
+}
+
+.panel-default .collapsed {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.about .panel-heading a::after {
+    font-family: "FontAwesome";
+    content: '\f147';
+    right: 20px;
+    position: absolute;
+}
+
+.about .panel-heading .collapsed::after {
+    content: '\f196';
+}
+
+.introduce {
+    padding: 15px 0px;
+}
+
+.about .content{
+    padding-left: 0px;
+}
+
+/*服务*/
+.service {
+    position: relative;
+    background: url("../img/bg-image-1.jpg");
+    color: #fff;
+}
+
+.service .col-md-6 {
+    padding: 10px 20px;
+}
+
+.service::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #55ACEE;
+    opacity: 0.7;
+    content: '';
+}
+
+.service .container {
+    z-index: 1;
+    position: relative;
+}
+
+.service i {
+    transform: scale(0.8);
+}
+
+.service h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/*一起学习模块*/
+.together {
+    background-color: #55ACEE;
+    width: 100%;
+    padding: 0px;
+}
+
+.together p {
+    color: #fff;
+    font-size: 36px;
+}
+
+/*
+图集*/
+.filter li {
+    float: none;
+    display: inline-block;
+
+}
+
+.overlay-container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(98, 165, 216, 0.7);
+    cursor: pointer;
+    transform: scale(0.8);
+    transition: all 0.2s;
+    opacity: 0;
+}
+
+.overlay i {
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    font-size: 18px;
+    color: #fff;
+}
+
+.overlay span {
+    position: absolute;
+    bottom: 10px;
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.overlay-container:hover .overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.modal .modal-header {
+    background-color: #55ACEE;
+    color: #fff;
+}
+
+.modal-header .close {
+    color: #fff;
+    opacity: 1;
+}
+
+
+/*认证模块*/
+.authentication{
+    padding-bottom: 0px;
+    position: relative;  /*蒙版必要*/
+    background: url("../img/bg-image-2.jpg") no-repeat center center; /*出现重复或不全屏时用这两句*/
+    background-size: cover;/*出现重复或不全屏时用这两句*/
+}
+
+.authentication .ad{
+    padding: 20px 0px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.authentication h1{
+    color: #fff;
+    font-weight: 700;
+}
+
+.authentication .media{
+    color: #fff;;
+}
+
+.authentication .media blockquote {
+    border: none;
+    padding: 0px;
+}
+
+.authentication .media blockquote footer{
+    color: #ccc;
+}
+
+/*-----------------------------------------注意总结一下，这个是什么原因造成的*/
+.authentication .media-left{
+    display: block;
+    float: left;
+    padding: 0px;
+}
+
+.authentication .media-left img{
+    padding: 0px 10px 0px 0px;
+}
+/*-----------------------------------------注意总结一下，这个是什么原因造成的*/
+
+
+.authentication::after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.2);  /*蒙版必要*/
+    content: '';
+}
+
+.authentication .container{
+    z-index: 1;
+    position: relative; /*蒙版必要*/
+}
+
+/*Happy学习模块*/
+.happy-study{
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.happy{
+    background-color: #000;
+    padding: 30px 0px;
+}
+
+
+/*联系我们*/
+
+.contact p{
+    font-size: 18px;
+}
+
+.contact .list-icons li{
+    margin: 20px 0px;
+    font-size: 18px;
+}
+
+.contact .links li a i{
+    font-size: 36px;
+    color: #000;
+    padding: 0px 10px;
+}
+
+.contact .links{
+    margin-top: 40px;
+}
+
+.contact .links .facebook a i{
+    padding-left: 0px;
+}
+.contact .form-group span{
+    margin-top: 10px;
+}
+
+
+
