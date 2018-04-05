@@ -34,60 +34,94 @@
 
     <!--LoginAction，由SupportAction创建，默认调用execute方法-->
     <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
-        <action name="login" class="com.snow.phoenix.demo.struts2.LoginAction">
+
+        <!--包拦截器-->
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.snow.phoenix.demo.struts2.interceptor.LoginInterceptor"></interceptor>
+            <interceptor name="interestInterceptor" class="com.snow.phoenix.demo.struts2.interceptor.InterestInterceptor"></interceptor>
+        </interceptors>
+
+        <!--登录action-->
+        <action name="login" class="com.snow.phoenix.demo.struts2.action.LoginAction">
+
+            <!--<interceptor-ref name="loginInterceptor"></interceptor-ref>-->
+            <!--拦截器为什么要拦截提交-->
             <result>
-                index.jsp
-            </result>
-        </action>
-    </package>
-
-
-    <!--UpdateAction，由普通javabean创建，指定method调用-->
-    <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
-        <action name="update" class="com.snow.phoenix.demo.struts2.UpdateAction" method="updateName">
-            <result name="success">
-                index.jsp
+                /action/login.jsp
             </result>
         </action>
 
-        <action name="update" class="com.snow.phoenix.demo.struts2.UpdateAction" method="updatePwd">
-            <result name="success">
-                index.jsp
-            </result>
-        </action>
-    </package>
-
-
-    <!--UpdateAction，由普通javabean创建，使用DMI调用，访问连接诸如：
-      localhost:8080/update/m1 此方法会调用UpdateAction中的第一个方法，即updateName
-      localhost:8080/update/m2 此方法会调用UpdateAction中的第二个方法，即updatePwd
-    -->
-    <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
-        <action name="update" class="com.snow.phoenix.demo.struts2.UpdateAction" method="updateName">
+        <!--兴趣action-->
+        <action name="interest" class="com.snow.phoenix.demo.struts2.action.InterestAction">
+            <interceptor-ref name="interestInterceptor"></interceptor-ref>
             <result>
-                index.jsp
+                /action/interest.jsp
             </result>
         </action>
 
-        <action name="update" class="com.snow.phoenix.demo.struts2.UpdateAction" method="updatePwd">
+        <!--国际化action-->
+        <action name="national" class="com.snow.phoenix.demo.struts2.i18n.I18nAction">
             <result name="success">
-                index.jsp
+                /i18n/i18n.jsp
             </result>
         </action>
+
+        <!--校验action-->
+        <action name="register" class="com.snow.phoenix.demo.struts2.validation.action.RegisterAction">
+            <result name="input">/validation/regist.jsp</result>
+            <result name="success">/validation/success.jsp</result>
+        </action>
+
     </package>
 
-    <!--UpdateAction，有普通javabean创建，使用通配符调用，访问连接诸如：
-    localhost:8080/update/update_Name
-    localhost:8080/update/update_Pwd
+    <!--
+            &lt;!&ndash;UpdateAction，由普通javabean创建，指定method调用&ndash;&gt;
+            <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
+                <action name="update" class="com.snow.phoenix.demo.struts2.action.LoginAction.UpdateAction" method="updateName">
+                    <result name="success">
+                        /action/login.jsp
+                    </result>
+                </action>
+
+                <action name="update" class="com.snow.phoenix.demo.struts2.action.UpdateAction" method="updatePwd">
+                    <result name="success">
+                        /action/login.jsp
+                    </result>
+                </action>
+            </package>
+
+
+            &lt;!&ndash;UpdateAction，由普通javabean创建，使用DMI调用，访问连接诸如：
+              localhost:8080/update/m1 此方法会调用UpdateAction中的第一个方法，即updateName
+              localhost:8080/update/m2 此方法会调用UpdateAction中的第二个方法，即updatePwd
+            &ndash;&gt;
+            <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
+                <action name="update" class="com.snow.phoenix.demo.struts2.action.UpdateAction" method="updateName">
+                    <result>
+                        /action/login.jsp
+                    </result>
+                </action>
+
+                <action name="update" class="com.snow.phoenix.demo.struts2.action.UpdateAction" method="updatePwd">
+                    <result name="success">
+                        /action/login.jsp
+                    </result>
+                </action>
+            </package>
+
+            &lt;!&ndash;UpdateAction，有普通javabean创建，使用通配符调用，访问连接诸如：
+            localhost:8080/update/update_Name
+            localhost:8080/update/update_Pwd
+            &ndash;&gt;
+            <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
+                <action name="update_*" class="com.snow.phoenix.demo.struts2.action.UpdateAction" method="{1}">
+                    <result name="success">
+                        /action/login.jsp
+                    </result>
+                </action>
+            </package>
+
     -->
-    <package name="com.snow.phoenix.demo.struts2" extends="struts-default">
-        <action name="update_*" class="com.snow.phoenix.demo.struts2.UpdateAction" method="{1}">
-            <result name="success">
-                index.jsp
-            </result>
-        </action>
-    </package>
-
 
     <!--result标签中的type属性：
 

@@ -1,4 +1,4 @@
-package com.snow.phoenix.demo.struts2;/*
+package com.snow.phoenix.demo.struts2.action;/*
  *  Copyright 2016-2020 the original author or authors.
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,7 +67,7 @@ public class LoginAction extends ActionSupport {
     public String execute() throws Exception {
         this.setResult("name=" + name);
         this.setResult(this.getResult() + "  age=  " + String.valueOf(age));
-        return "success";
+        return SUCCESS;
     }
 
 }

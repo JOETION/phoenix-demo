@@ -1,0 +1,60 @@
+<!--
+  ~  Copyright 2016-2020 the original author or authors.
+  ~
+  ~   Licensed under the Apache License, Version 2.0 (the "License");
+  ~   you may not use this file except in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~       QQ:1322874562  PHONE:13882946572
+  ~
+  ~   Unless required by applicable law or agreed to in writing, software
+  ~   distributed under the License is distributed on an "AS IS" BASIS,
+  ~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~   See the License for the specific language governing permissions and
+  ~   limitations under the License.
+  -->
+
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="user.userName">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>用户名不能为空！</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="regexExpression"><![CDATA[^[a-zA-Z]\w*$]]></param>
+			<message>用户名格式不正确！</message>
+		</field-validator>
+	</field>
+	<field name="user.userPwd">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>密码不能为空！</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<message>密码长度不能小于6！</message>
+		</field-validator>
+	</field>
+	<field name="userPwd">
+		<field-validator type="requiredstring" short-circuit="true">
+			<message>确认密码不能为空！</message>
+		</field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression"><![CDATA[userPwd==user.userPwd]]></param>
+			<message>密码不一致！</message>
+		</field-validator>
+	</field>
+	<field name="user.userEmail">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>邮箱地址不能为空！</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>邮箱地址格式不正确！</message>
+		</field-validator>
+	</field>
+</validators>
+

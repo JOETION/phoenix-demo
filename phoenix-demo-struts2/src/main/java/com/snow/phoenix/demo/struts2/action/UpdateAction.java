@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-package com.snow.phoenix.demo.struts2;
+package com.snow.phoenix.demo.struts2.action;
 
 /* 				    
  **********************************************
@@ -93,5 +93,19 @@ public class UpdateAction {
         return SUCCESS;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 }

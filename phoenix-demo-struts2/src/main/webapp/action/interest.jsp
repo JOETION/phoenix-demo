@@ -17,31 +17,35 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/3/12
-  Time: 21:43
+  Date: 2018/3/28
+  Time: 17:36
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="/struts-tags" prefix="c" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>兴趣选择页面</title>
 </head>
 <body>
-<h2>Hello World!</h2>
-
-<form action="login">
-    <br/> 姓名<input type="text" name="name"> <br/> 年龄<input
-        type="text" name="age"> <input type="submit" value="提交">
-</form>
 
 <div>
-    <p>服务器返回结果为：</p>
-    <c:property value="result"/>
+    <form action="interest">
+        <input type="submit" value="提交">
+    </form>
 </div>
 
-
+<div>
+    <c:forEach items="${stringBooleanMap}" var="i">
+        <c:choose>
+            <c:when test="${i.value}">
+                <span>${i.key}<input type="checkbox" checked></span>
+            </c:when>
+            <c:otherwise>
+                <span>${i.key}<input type="checkbox"></span>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+</div>
 </body>
 </html>
