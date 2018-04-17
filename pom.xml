@@ -72,5 +72,6 @@
         <module>phoenix-demo-jsp</module>
         <module>phoenix-demo-springboot</module>
         <module>phoenix-demo-struts2</module>
+        <module>phoenix-demo-hibernate</module>
     </modules>
 </project>
