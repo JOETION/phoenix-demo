@@ -65,7 +65,6 @@ public class Test {
         }
     }
 
-
     //输出金字塔
     public void goldTower() {
         int n;
