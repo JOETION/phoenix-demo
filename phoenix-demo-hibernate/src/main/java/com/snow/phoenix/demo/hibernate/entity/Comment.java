@@ -83,6 +83,10 @@ public class Comment {
         @Column(name = "comment_content")
         private String commentContent;
 
+        /**
+         * EnumType.ORDINAL：取枚举值的索引
+         * EnumType.STRING：取枚举值的变量名（是枚举值，而不是枚举变量）
+         */
         @Enumerated(value = EnumType.ORDINAL)
         @Column(name = "top")
         private CommentEnum top;

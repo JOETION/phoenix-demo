@@ -18,7 +18,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.snow.phoenix.demo.hibernate.entity.User" table="user">
+    <!--动态插入，插入：hibernate拼接sql时，如果没有值，则拼接成sql时，不会带该字段-->
+    <!--如果程序加载一个持久化对象的目的是为访问他的属性，则可以采用立即加载。如果程序加载一个持久化对象的目的仅仅是为了获得他的引用，则可以采用延迟加载。-->
+    <class name="com.snow.phoenix.demo.hibernate.entity.User" table="user" dynamic-insert="true" dynamic-update="true" lazy="true">
         <id name="userId" type="java.lang.Integer">
             <column name="user_id"/>
             <generator class="native"/>
