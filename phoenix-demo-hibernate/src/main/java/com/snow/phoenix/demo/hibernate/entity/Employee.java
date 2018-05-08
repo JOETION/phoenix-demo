@@ -19,7 +19,7 @@ package com.snow.phoenix.demo.hibernate.entity;
 /* 				    
  **********************************************
  *      DATE           PERSON       REASON
- *    2018/4/18          FXY        Created
+ *    2018/5/8          FXY        Created
  **********************************************
  */
 
@@ -27,26 +27,21 @@ package com.snow.phoenix.demo.hibernate.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "video")
-public class Video {
+public class Employee {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(name = "video_name")
-    private String videoName;
+    @Column
+    private String name;
 
-    @Column(name = "video_type")
-    private int videoType;
+    @ManyToOne
+    private Department department;
 
-
-    public Video(String videoName, int videoType) {
-        this.videoName = videoName;
-        this.videoType = videoType;
-    }
-
-    public Video() {
+    public Employee(String name, Department department) {
+        this.name = name;
+        this.department = department;
     }
 
     public int getId() {
@@ -57,28 +52,19 @@ public class Video {
         this.id = id;
     }
 
-    public String getVideoName() {
-        return videoName;
+    public String getName() {
+        return name;
     }
 
-    public void setVideoName(String videoName) {
-        this.videoName = videoName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getVideoType() {
-        return videoType;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setVideoType(int videoType) {
-        this.videoType = videoType;
-    }
-
-    @Override
-    public String toString() {
-        return "Video{" +
-                "id=" + id +
-                ", videoName='" + videoName + '\'' +
-                ", videoType=" + videoType +
-                '}';
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

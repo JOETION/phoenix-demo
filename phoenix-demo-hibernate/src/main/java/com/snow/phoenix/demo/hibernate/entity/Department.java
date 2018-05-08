@@ -19,35 +19,35 @@ package com.snow.phoenix.demo.hibernate.entity;
 /* 				    
  **********************************************
  *      DATE           PERSON       REASON
- *    2018/4/18          FXY        Created
+ *    2018/5/8          FXY        Created
  **********************************************
  */
 
-
 import javax.persistence.*;
+import java.util.Set;
 
+//部门实体类，与employee类是一对多的关系
 @Entity
-@Table(name = "video")
-public class Video {
+public class Department {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(name = "video_name")
-    private String videoName;
+    @Column
+    private String name;
 
-    @Column(name = "video_type")
-    private int videoType;
-
-
-    public Video(String videoName, int videoType) {
-        this.videoName = videoName;
-        this.videoType = videoType;
-    }
-
-    public Video() {
-    }
+    /**
+     * CascadeType.PERSIST：保存           CascadeType.REMOVE：删除
+     * CascadeType.MERGE：修改            CascadeType.REFRESH：刷新
+     * CascadeType.ALL：全部
+     * <br/>
+     * Fetch.EAGER：及时加载，多对一默认是Fetch.EAGER
+     * Fetch.LAZY：延迟加载，一对多默认是Fetch.LAZY
+     */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "department_id") //参考本表的哪个字段作为外键
+    private Set<Employee> employees;
 
     public int getId() {
         return id;
@@ -57,28 +57,19 @@ public class Video {
         this.id = id;
     }
 
-    public String getVideoName() {
-        return videoName;
+    public String getName() {
+        return name;
     }
 
-    public void setVideoName(String videoName) {
-        this.videoName = videoName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getVideoType() {
-        return videoType;
+    public Set<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setVideoType(int videoType) {
-        this.videoType = videoType;
-    }
-
-    @Override
-    public String toString() {
-        return "Video{" +
-                "id=" + id +
-                ", videoName='" + videoName + '\'' +
-                ", videoType=" + videoType +
-                '}';
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 }

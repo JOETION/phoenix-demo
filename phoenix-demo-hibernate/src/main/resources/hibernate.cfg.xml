@@ -32,5 +32,7 @@
         <mapping resource="user.hbm.xml"/>
         <mapping class="com.snow.phoenix.demo.hibernate.entity.Video"></mapping>
         <mapping class="com.snow.phoenix.demo.hibernate.entity.Comment"></mapping>
+        <mapping class="com.snow.phoenix.demo.hibernate.entity.Department"></mapping>
+        <mapping class="com.snow.phoenix.demo.hibernate.entity.Employee"></mapping>
     </session-factory>
 </hibernate-configuration>

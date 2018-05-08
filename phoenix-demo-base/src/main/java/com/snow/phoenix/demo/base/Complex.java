@@ -43,7 +43,13 @@ public class Complex {
         if (realPart == 0 && imaginPart == 0) {
             return "0";
         } else if (realPart == 0 && imaginPart != 0) {
-            return imaginPart + "i";
+            if (imaginPart == 1) {
+                return "i";
+            } else if (imaginPart == -1) {
+                return "-i";
+            } else {
+                return imaginPart + "i";
+            }
         } else if (realPart != 0 && imaginPart == 0) {
             return "" + realPart;
         } else if (imaginPart < 0) {
@@ -71,29 +77,6 @@ public class Complex {
         Complex complex = (Complex) obj;
         return complex.getRealPart() == realPart && complex.getImaginPart() == imaginPart;
     }
-
-    //主函数入口
-    public static void main(String[] args) {
-        //数据输入验证
-        System.out.println("数据验证：");
-        System.out.println(new Complex(3, 2).toString());
-        System.out.println(new Complex(3, -2).toString());
-        System.out.println(new Complex(4, 1).toString());
-        System.out.println(new Complex(4, -1).toString());
-        System.out.println(new Complex(1, 0).toString());
-        System.out.println(new Complex(0, 0).toString());
-        System.out.println(new Complex(0, -2).toString());
-        System.out.println(new Complex(0, 1).toString());
-        System.out.println(new Complex(0, -1).toString());
-
-        System.out.println("复数运算：");
-        //复数运算
-        System.out.println(new Complex(3, 2).complexAdd(new Complex(3, 2))); //加
-        System.out.println(new Complex(3, 2).complexSub(new Complex(3, 2))); //减
-        System.out.println(new Complex(3, 2).complexMulti(new Complex(3, 2))); //乘
-        System.out.println(new Complex(3, 2).complexDiv(new Complex(3, 2))); //除
-    }
-
 
     //复数相加
     public Complex complexAdd(Complex a) {
