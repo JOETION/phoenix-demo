@@ -89,7 +89,16 @@ public class Test {
 
 
     public static void main(String args[]) {
-        new Test().goldTower();
+//        new Test().goldTower();
+
+        outter:for(int i=0;i<3;i++){
+            inner:for(int j=0;j<2;j++){
+                if(j==1)continue  outter;
+                System.out.println(j+"and"+i+";");
+            }
+        }
+
+
     }
 
 
