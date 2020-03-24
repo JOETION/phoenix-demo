@@ -24,23 +24,30 @@ package com.snow.phoenix.demo.base.java8.lambda;
  */
 
 
+import com.alibaba.fastjson.JSONObject;
+import sun.util.resources.cldr.ga.LocaleNames_ga;
+
+import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * Predication noun.论断  Predicate verb.断言，断定
- * <p>
+ * <p/>
  * 流Lambda表达式案例，这个主要用于List和Set
- * <p>
+ * <p/>
  * 中间流：
  * map (mapToInt, flatMap 等)、 filter、 distinct、 sorted、 peek、 limit、 skip、 parallel、 sequential、 unordered
  * 终端流：
  * forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 iterator
  * 短路流（或属于中间流或属于终端流，主要用于缩小查找范围）：
  * anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 limit
- * <p>
+ * <p/>
  * lambda调用方法：
  * 容器::方法名
  * 类名::静态方法名
@@ -291,6 +298,9 @@ public class StreamLambdaDemo {
             collect.stream().forEachOrdered(a -> {
                 System.out.println(a);
             });
+
+            //或者，如果需要输出某些对象的属性，需要用花括号来分开写
+            collect.stream().forEachOrdered(System.out::println);
         }
 
         //最小案例
@@ -384,7 +394,6 @@ public class StreamLambdaDemo {
             System.out.println("名字： " + a.getName() + " 密码： " + a.getPwd() + " 余额： " + a.getBalance());
         });
 
-
     }
 
     public static void main(String args[]) {
@@ -408,5 +417,150 @@ public class StreamLambdaDemo {
 //        new StreamLambdaDemo.TerminalStreamLambdaDemo().findFirstOfStream();
 //        new StreamLambdaDemo.TerminalStreamLambdaDemo().iteratorOfStream();
         new StreamLambdaDemo().multipleLambdaDemo();
+    }
+
+    /**
+     * Predicate案列
+     * <p>参考网址：<a href="https://blog.csdn.net/nwpu_geeker/article/details/80927844">java函数式编程之Predicate</a></p>
+     */
+    public static class PredicateDemo {
+
+        //Predicate是逻辑表达式的引用，里面有个test()方法，在lambda表达式中，当传入了逻辑表达式的引用，如filter()等，会自动调用test()方法进行验证
+        public static void main(String args[]) {
+            Predicate<Integer> boolValue = x -> x > 5;
+            System.out.println(boolValue.test(1) + "");
+            System.out.println(boolValue.test(6) + "");
+        }
+    }
+
+
+    /**
+     * java8中的冒号表达式案例
+     * <p>参考网址：</p>
+     * <p><a href="http://toulezu.com/2019/05/14/understand-Java-8-method-reference/">Java 8 中双冒号(method reference)的用法</a></p>
+     * <p><a href="https://blog.csdn.net/neweastsun/article/details/82937659">java 8 双冒号操作</a></p>
+     * 冒号的作用主要有：<br/>
+     * 静态方法引用(Reference to a static method)<br/>
+     * 语法：ContainingClass::staticMethodName<br/>
+     * 例如：Person::getAge<br/>
+     * 对象的实例方法引用(Reference to an instance method of a particular object)<br/>
+     * 语法：containingObject::instanceMethodName<br/>
+     * 例如：System.out::println<br/>
+     * 特定类型的任意对象实例的方法(Reference to an instance method of an arbitrary object of a particular type)<br/>
+     * 语法：(ContainingType::methodName)<br/>
+     * 例如：String::compareToIgnoreCase<br/>
+     * 类构造器引用语法(Reference to a constructor)<br/>
+     * 语法：ClassName::new<br/>
+     * 例如：ArrayList::new<br/>
+     * <br/>
+     * 备注：双冒号表达式返回的是一个 函数式接口对象（用 @FunctionalInterface 注解的 interface 类型）的实例
+     */
+    public static class ColonDemo {
+
+        //用于测试冒号表达式调用静态方法
+        public static class StringUtils {
+            public static void toUpperCase(String str) {
+                System.out.println(str.toUpperCase());
+            }
+        }
+
+        //用于测试冒号表达式调用成员方法
+        public class IntegerUtils {
+            public void toInt(Long data) {
+                System.out.println(data.intValue());
+            }
+        }
+
+
+        /**
+         * 测试冒号表达式实例化对象
+         */
+        @FunctionalInterface
+        public interface ITool {
+            JSONTool create(String name);
+        }
+
+        @FunctionalInterface
+        public interface InterfaceComputer {
+            Object create();
+        }
+
+        //三个参数以上的构造函数的函数式接口，仿照Function接口即可
+        @FunctionalInterface
+        interface TriFunction<A, B, C, R> {
+            R apply(A a, B b, C c);
+
+            default <V> TriFunction<A, B, C, V> andThen(Function<? super R, ? extends V> after) {
+                Objects.requireNonNull(after);
+                return (A a, B b, C c) -> after.apply(apply(a, b, c));
+            }
+        }
+
+        public static class JSONTool {
+
+            private String name;
+
+            public JSONTool(String name) {
+                this.name = name;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            private static JSONObject parseJSON(JSONTool jsonTool) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put(jsonTool.getName(), jsonTool.getName());
+                return jsonObject;
+            }
+
+            public static String getJSONString(String name, ITool iTool) {
+                return parseJSON(iTool.create(name)).toJSONString();
+            }
+
+        }
+
+        //测试调用方法
+        public void ColonTest() {
+
+            //静态方法调用
+            List<String> list = Arrays.asList("aaaa", "bbbb", "cccc");
+            list.forEach(StringUtils::toUpperCase);
+
+            //成员方法调用
+            List<Long> list1 = Arrays.asList(111L, 222L, 333L);
+            list1.forEach(new ColonDemo.IntegerUtils()::toInt);
+
+            //特定类型的任意对象实例的方法
+            String[] stringArray = {"Barbara", "James", "Mary", "John", "Patricia", "Robert", "Michael", "Linda"};
+            Arrays.sort(stringArray, String::compareToIgnoreCase);
+            for (int i = 0; i < stringArray.length; i++) {
+                System.out.println(stringArray[i]);
+            }
+
+            //对象实例化，注意冒号表达式属于lambda表达式的一种，只是定义了new这种操作，最终的new操作是在函数接口里面调用函数方法实例化的
+            //如此处先调用JSONTool::new定义了new这种操作，得到ITool函数式接口，然后函数式接口自动调用里面参数匹配的方法执行new操作
+            System.out.println(JSONTool.getJSONString("a", JSONTool::new));
+            System.out.println(JSONTool.getJSONString("a", t -> new JSONTool(t)));
+
+            //其实和上面一种实例化方法是一样的，只不过上一个把函数式接口里面的create()方法封装进类方法里了
+            InterfaceComputer c = Object::new;
+            Object object = c.create();
+
+            //有两个参数的构造函数实例化，将此处Object换为有两个参数的构造函数的类即可
+//            BiFunction<Integer, String, Object> c4Function = Object::new;
+//            Object c4 = c4Function.apply(2013, "white");
+
+            //三个即以上参数的构造方法实例化，将此处Object换为有两个参数的构造函数的类即可
+//            TriFunction<Integer, String, Integer, Object> c6Function = Object::new;
+//            Object c3 = c6Function.apply(2008, "black", 90);
+
+
+            //生成5个对象数组
+            Function<Integer, Object[]> computerCreator = Object[]::new;
+            Object[] computerArray = computerCreator.apply(5);
+        }
+
+
     }
 }
