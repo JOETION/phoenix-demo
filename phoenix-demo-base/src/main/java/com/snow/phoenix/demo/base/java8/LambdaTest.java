@@ -29,7 +29,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LambdaTest {
+public class LambdaTest implements EventListener {
 
     public static class IntermdiateStreamLambda {
 
@@ -241,8 +241,8 @@ public class LambdaTest {
 
 
             //双冒号（::）是 Java 8 引入 Lambda 表达式后的一种用法，表示方法引用（method reference），可以更加简洁的实例化接口
-           // 双冒号表达式返回的是一个 函数式接口对象（用 @FunctionalInterface 注解的 interface 类型）的实例，
-           //函数式接口表示该接口是一个包含函数引用的接口，里面的每个方法都是从调用方传过来的一个函数引用，调用该接口里面的方法，意味着
+            // 双冒号表达式返回的是一个 函数式接口对象（用 @FunctionalInterface 注解的 interface 类型）的实例，
+            //函数式接口表示该接口是一个包含函数引用的接口，里面的每个方法都是从调用方传过来的一个函数引用，调用该接口里面的方法，意味着
             //就会调用传过来的方法
             list.stream().iterator().forEachRemaining(System.out::println);
         }
