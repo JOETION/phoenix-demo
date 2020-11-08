@@ -26,6 +26,7 @@ package com.snow.phoenix.demo.base.java8;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -252,5 +253,16 @@ public class LambdaTest implements EventListener {
 
     public static void main(String args[]) {
         new TerminalStreamLambda().groupOfStream();
+        //第三个参数是并发操作时对顺序不用的两个结果集进行处理的逻辑，如果是并行操作则第三个参数没用，始终要注意一点，Collector是对于集合的流进行的操作，每一个流都是
+        //集合中的一个元素
+        Integer length = Arrays.asList("123", "12432").stream().collect(Collector.of(() -> new int[1], (result, item) -> result[0] += item.length(), (result, result1) -> {
+            result[0] += result1[0];
+            return result;
+        }, a -> a[0]));
+        IntSummaryStatistics intSummaryStatistics = Arrays.asList("123", "23543", "ascac", "1233", "324").stream().collect(Collectors.summarizingInt(a -> Integer.parseInt(a)));
+        Map<String, String> stringMap = Arrays.asList("23423", "r42fs").stream().collect(Collectors.groupingBy(a -> a, Collectors.joining(",", "-", "m")));
+        Optional<String> maxString = Arrays.asList("safs", "dsvsd", "adsd213").stream().collect(Collectors.maxBy(Comparator.comparing(a -> a.length(), Comparator.comparingInt(a -> a))));
+        Map<Boolean, List<Integer>> collect = Arrays.asList("asda", "asfsdf", "dffgb").stream().collect(Collectors.partitioningBy(a -> a.startsWith("a"), Collectors.mapping(a -> a.length(), Collectors.toList())));
+
     }
 }
