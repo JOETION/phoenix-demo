@@ -252,17 +252,27 @@ public class LambdaTest implements EventListener {
     }
 
     public static void main(String args[]) {
-        new TerminalStreamLambda().groupOfStream();
+//        new TerminalStreamLambda().groupOfStream();
         //第三个参数是并发操作时对顺序不用的两个结果集进行处理的逻辑，如果是并行操作则第三个参数没用，始终要注意一点，Collector是对于集合的流进行的操作，每一个流都是
         //集合中的一个元素
-        Integer length = Arrays.asList("123", "12432").stream().collect(Collector.of(() -> new int[1], (result, item) -> result[0] += item.length(), (result, result1) -> {
-            result[0] += result1[0];
-            return result;
-        }, a -> a[0]));
-        IntSummaryStatistics intSummaryStatistics = Arrays.asList("123", "23543", "ascac", "1233", "324").stream().collect(Collectors.summarizingInt(a -> Integer.parseInt(a)));
-        Map<String, String> stringMap = Arrays.asList("23423", "r42fs").stream().collect(Collectors.groupingBy(a -> a, Collectors.joining(",", "-", "m")));
-        Optional<String> maxString = Arrays.asList("safs", "dsvsd", "adsd213").stream().collect(Collectors.maxBy(Comparator.comparing(a -> a.length(), Comparator.comparingInt(a -> a))));
-        Map<Boolean, List<Integer>> collect = Arrays.asList("asda", "asfsdf", "dffgb").stream().collect(Collectors.partitioningBy(a -> a.startsWith("a"), Collectors.mapping(a -> a.length(), Collectors.toList())));
+//        Integer length = Arrays.asList("123", "12432").stream().collect(Collector.of(() -> new int[1], (result, item) -> result[0] += item.length(), (result, result1) -> {
+//            result[0] += result1[0];
+//            return result;
+//        }, a -> a[0]));
+//        IntSummaryStatistics intSummaryStatistics = Arrays.asList("123", "23543", "ascac", "1233", "324").stream().collect(Collectors.summarizingInt(a -> Integer.parseInt(a)));
+//        Map<String, String> stringMap = Arrays.asList("23423", "r42fs").stream().collect(Collectors.groupingBy(a -> a, Collectors.joining(",", "-", "m")));
+//        Optional<String> maxString = Arrays.asList("safs", "dsvsd", "adsd213").stream().collect(Collectors.maxBy(Comparator.comparing(a -> a.length(), Comparator.comparingInt(a -> a))));
+//        Map<Boolean, List<Integer>> collect = Arrays.asList("asda", "asfsdf", "dffgb").stream().collect(Collectors.partitioningBy(a -> a.startsWith("a"), Collectors.mapping(a -> a.length(), Collectors.toList())));
+//        Integer firstNum = Arrays.asList("232", "123").stream().collect(Collectors.mapping(a -> Integer.parseInt(a), Collectors.collectingAndThen(Collectors.toList(), a -> a.get(0))));
+//        ArrayList<String> listString = Arrays.asList("assd", "csd", "23432").stream().collect(Collectors.toCollection(ArrayList::new));
+        String s = Arrays.asList("sdc", "csd", "3242").stream().collect(Collectors.reducing("=====", a -> a.toUpperCase(),(a,b)->a+b ));
+        Integer sum = Arrays.asList("213", "123123", "3112").stream().collect(Collectors.reducing(10345000, a -> Integer.parseInt(a), (a, b) -> a + b));
+        Map<Character, String> charMap = Arrays.asList("123", "ffe", "dvvs").stream().collect(Collectors.toMap(a -> a.charAt(0), a -> a));
+        Arrays.asList("232","23sss","2432").stream().peek(System.out::println).close();
+        Integer max = Arrays.asList("2142", "3r43r").stream().collect(Collectors.collectingAndThen(Collectors.summarizingInt(a -> Integer.parseInt(a)), a -> a.getMax()));
+        System.out.println(s);
+        System.out.println(sum);
+        System.out.println(max);
 
     }
 }
