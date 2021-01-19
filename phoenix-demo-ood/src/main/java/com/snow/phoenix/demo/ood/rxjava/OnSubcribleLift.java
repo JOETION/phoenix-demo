@@ -40,7 +40,6 @@ public class OnSubcribleLift<T, R> implements OnSubcrible<R> {
         boy.call(wifi);
     }
 
-    //妻子
     class OperateChange extends Subcrible<T> {
         Subcrible<? super R> actual;
         private Func1<? super T, ? extends R> transform;
