@@ -74,5 +74,6 @@
         <module>phoenix-demo-struts2</module>
         <module>phoenix-demo-hibernate</module>
         <module>phoenix-demo-jni</module>
+        <module>phoenix-demo-reactor</module>
     </modules>
 </project>
