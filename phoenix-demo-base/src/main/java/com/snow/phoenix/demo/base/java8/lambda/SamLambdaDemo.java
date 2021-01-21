@@ -16,7 +16,7 @@
 
 package com.snow.phoenix.demo.base.java8.lambda;
 
-/* 				    
+/*
  **********************************************
  *      DATE           PERSON       REASON
  *    2017/9/17          FXY        Created
@@ -35,13 +35,25 @@ import java.util.stream.Stream;
  */
 public class SamLambdaDemo {
 
+    private void stream() {
+        //获取字符串的流
+        Stream<String> stringStream = Stream.of("111", "222");
+        //获取整形数据的流
+        Stream<Integer> integerStream = Stream.of(222);
+        //获取链表的流
+        Stream<List<String>> listStream = Stream.of(Arrays.asList("123", "235"));
+        //获取链表中数据的流
+        Stream<String> listContentStream = Arrays.asList("123", "235").stream();
+        //获取到的是集合里面数据的流，比如此处集合中的数据是字符串，此处获取到的就是Stream<String>而不是Stream<List<String>>
+        Stream<String> stream = Arrays.stream(new String[]{"123", "234"});
+    }
+
     //新开线程
     public void newRunnableLambda() {
         new Thread(() -> {
             System.out.println("用lambda表达式代替匿名内部类");
         }).start();
     }
-
 
     //比较大小
     public void newComparatorLambda() {
@@ -57,12 +69,9 @@ public class SamLambdaDemo {
         Stream.of(list).forEach(param -> System.out.println(param));
     }
 
-
     public static void main(String args[]) {
-
         SamLambdaDemo samLambdaDemo = new SamLambdaDemo();
         samLambdaDemo.newRunnableLambda();
         samLambdaDemo.newComparatorLambda();
     }
-
 }

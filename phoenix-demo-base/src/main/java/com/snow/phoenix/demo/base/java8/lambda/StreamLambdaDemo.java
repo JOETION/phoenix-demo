@@ -16,7 +16,7 @@
 
 package com.snow.phoenix.demo.base.java8.lambda;
 
-/* 				    
+/*
  **********************************************
  *      DATE           PERSON       REASON
  *    2017/9/17          FXY        Created
@@ -25,12 +25,9 @@ package com.snow.phoenix.demo.base.java8.lambda;
 
 
 import com.alibaba.fastjson.JSONObject;
-import sun.util.resources.cldr.ga.LocaleNames_ga;
 
-import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -55,7 +52,6 @@ import java.util.stream.Stream;
  * 构造函数::new
  */
 public class StreamLambdaDemo {
-
 
     /**
      * 中间流案列
@@ -85,8 +81,6 @@ public class StreamLambdaDemo {
             for (String s : array) {
                 System.out.println(s);
             }
-
-
         }
 
         /**
@@ -389,7 +383,7 @@ public class StreamLambdaDemo {
 
         //第二种方式遍历计算结果
         userPojos.stream().sorted((a, b) ->
-                        Integer.parseInt(a.getBalance()) > Integer.parseInt(b.getBalance()) ? 1 : -1
+                Integer.parseInt(a.getBalance()) > Integer.parseInt(b.getBalance()) ? 1 : -1
         ).forEachOrdered(a -> {
             System.out.println("名字： " + a.getName() + " 密码： " + a.getPwd() + " 余额： " + a.getBalance());
         });
@@ -560,7 +554,6 @@ public class StreamLambdaDemo {
             Function<Integer, Object[]> computerCreator = Object[]::new;
             Object[] computerArray = computerCreator.apply(5);
         }
-
 
     }
 }
