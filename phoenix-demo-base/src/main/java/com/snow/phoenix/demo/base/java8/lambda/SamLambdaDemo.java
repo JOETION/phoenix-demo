@@ -24,6 +24,8 @@ package com.snow.phoenix.demo.base.java8.lambda;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -73,5 +75,14 @@ public class SamLambdaDemo {
         SamLambdaDemo samLambdaDemo = new SamLambdaDemo();
         samLambdaDemo.newRunnableLambda();
         samLambdaDemo.newComparatorLambda();
+    }
+
+    private void functionLambda() {
+        //创建一个线程接口
+        Runnable runnable = () -> System.out.println("this is async logic");
+        //点击事件回调函数
+        ActionListener actionListener = e -> System.out.println("这里是点击触发时的回调函数");
+        //创建一个恒等比较器
+        Comparable<Object> comparable = o -> 0;
     }
 }
