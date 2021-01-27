@@ -75,5 +75,6 @@
         <module>phoenix-demo-hibernate</module>
         <module>phoenix-demo-jni</module>
         <module>phoenix-demo-reactor</module>
+        <module>phoenix-demo-rxjava</module>
     </modules>
 </project>
